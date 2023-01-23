@@ -6,6 +6,8 @@ interface Props {
   title?: string;
 }
 
+const origin = typeof window === "undefined" ? "" : window.location.origin;
+
 export const Layout: FC<PropsWithChildren<Props>> = ({ children, title }): JSX.Element => {
 
   return (
@@ -15,6 +17,9 @@ export const Layout: FC<PropsWithChildren<Props>> = ({ children, title }): JSX.E
         <meta name="description" content="PokemonApp" />
         <meta name="author" content="Julián Rojas" />
         <meta name="keywords" content="pokemon" />
+        <meta property="og:title" content={`Informacion sobre - ${title}`} />
+        <meta property="og:description" content={`Esta es la página sobre ${title}`} />
+        <meta property="og:image" content={`${origin}/img/banner.png`} />
       </Head>
       <Navbar />
       <main style={{
